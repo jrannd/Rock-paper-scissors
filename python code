@@ -1,0 +1,80 @@
+import random
+
+ROCK = 0
+PAPER = 1
+SCISSORS = 2
+
+# Read random seed to support testing (do not alter) and starting credits
+seed = int(input())
+# Set the seed for random
+random.seed(int(seed))
+
+# Create players and give them names. 
+player1 = input()
+player2 = input()
+
+# Choose number of rounds
+rounds= int(input())
+
+# Rounds played set to zero so we can count num of rounds played through each iteration of the while loop.
+rounds_played = 0
+
+# Randomize each player's choice of rock, paper, or scissors.
+player1_choice = random.randint(0,2)
+player2_choice = random.randint(0,2)
+
+# Create dictionary so we can index the dictionary to show what the winner chose.
+winner_dict = {0 : 'rock', 1 : 'paper', 2 : 'scissors'}
+
+# Create player win varriables so we can keep track and count the wins for each player. 
+player1_wins = 0
+player2_wins = 0
+
+
+# First while is to make sure num of rounds is greater than zero
+while rounds < 0:
+    print('Rounds must be > 0')
+    rounds = int(input())
+else:
+    print(f'{player1} vs {player2} for {rounds} rounds')
+
+# Game starts with while loop and loop will stop once rounds_played < rounds is FALSE.
+while rounds_played < rounds:
+
+# If players tie we need to show there is a tie and have players chose rock, paper, scisors, again. Tie does not count for rounds played.
+    if player1_choice == player2_choice:
+        print('Tie')
+        player1_choice = random.randint(0,2)
+        player2_choice = random.randint(0,2)
+
+'''
+Below are statments to declare a winner and keep track of total rounds played and each player's number of wins.
+We also can use the player's winning choice to index through the dictioray above in order to print what choice 
+the player won with.
+'''
+    elif player1_choice == 0 and player2_choice == 2:
+        print(f'{player1} wins with {winner_dict[player1_choice]}')
+        player1_choice = random.randint(0,2)
+        player2_choice = random.randint(0,2)
+        rounds_played += 1
+        player1_wins += 1
+    elif player2_choice == 0 and player1_choice == 2:
+        print(f'{player2} wins with {winner_dict[player2_choice]}')
+        player1_choice = random.randint(0,2)
+        player2_choice = random.randint(0,2)
+        rounds_played += 1
+        player2_wins += 1
+    elif player1_choice > player2_choice:
+        print(f'{player1} wins with {winner_dict[player1_choice]}')
+        player1_choice = random.randint(0,2)
+        player2_choice = random.randint(0,2)
+        rounds_played += 1
+        player1_wins += 1
+    else:
+        print(f'{player2} wins with {winner_dict[player2_choice]}')
+        player1_choice = random.randint(0,2)
+        player2_choice = random.randint(0,2)
+        rounds_played += 1
+        player2_wins += 1
+# Final print statment to show player's total wins at the end of x amount of games played.
+print(f'{player1} wins {player1_wins} and {player2} wins {player2_wins}')
