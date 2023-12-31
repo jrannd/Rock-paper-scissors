@@ -4,7 +4,7 @@ ROCK = 0
 PAPER = 1
 SCISSORS = 2
 
-# Read random seed to support testing (do not alter) and starting credits
+# Read random seed to support testing and starting credits
 seed = int(input())
 # Set the seed for random
 random.seed(int(seed))
